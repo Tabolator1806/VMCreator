@@ -1,1 +1,0 @@
-VMgroups=`az group list|grep '"name":*'|cut -d ":" -f 2`

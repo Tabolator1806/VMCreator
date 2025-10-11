@@ -4,7 +4,7 @@ then
 else
     echo "Select a resource group to add machines"
     VMgroups=`az group list|grep '"name":*'|cut -d ":" -f 2`
-    declare -i index=0
+    declare -i index=1
     for groupname in $VMgroups
     do
         echo "$index) $groupname"
@@ -13,7 +13,9 @@ else
     echo "Or type a name for a new resource group: "
     read resourceGroup
     case $resourceGroup in
-        "[0-9]") echo "`$VMgroups|cut -d "," -f $resourceGroup` has been chosen";;
+        [0-$index])
+        resourceGroupName=`cut -d ',' -f 1 <<< $VMgroups`
+        echo "$resourceGroupName has been chosen";;
         *) echo "$resourceGroup has been created";;
     esac
 fi
