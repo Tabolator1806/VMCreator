@@ -2,6 +2,7 @@ if [$# -ne 0];
 then
     echo womp
 else
+#choosing group resource
     echo "Select a resource group to add machines"
     VMgroups=`az group list|grep '"name":*'|cut -d ":" -f 2`
     declare -i index=1
@@ -22,4 +23,16 @@ else
             echo "$resourceGroup has been created";;
     esac
     echo "$resourceGroup has been chosen"
+#Choosing amount and type of machines
+    echo "Amount of machines to be created: "
+    read machineAmount
+    echo "Select type of a machine:"
+    printf "1)Windows \n2)Ubuntu\n3)Custom"
+    read machineType
+    echo "Input username:"
+    read username
+    for i in {1..$amount}
+    do
+	
+    done
 fi
