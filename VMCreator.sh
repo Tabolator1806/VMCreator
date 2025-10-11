@@ -13,11 +13,13 @@ else
     echo "Or type a name for a new resource group: "
     read resourceGroup
     case $resourceGroup in
-        [0-99])
+        [0-$index])
             resourceGroupName=`cut -d '
-' -f "$resourceGroup" <<< "$VMgroups"`
-            echo "$resourceGroupName has been chosen";;
+' -f "$resourceGroup" <<< "$VMgroups"|cut -d ',' -f 1`
+	    resourceGroup=$resourceGroupName;;
         *)
+            az group create --location francecentral --resource-group $resourceGroup --only-show-errors
             echo "$resourceGroup has been created";;
     esac
+    echo "$resourceGroup has been chosen"
 fi
