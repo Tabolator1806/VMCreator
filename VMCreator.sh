@@ -14,7 +14,8 @@ else
     read resourceGroup
     case $resourceGroup in
         [0-99])
-            resourceGroupName=`cut -d ',' -f "$resourceGroup" <<< "raz,dwa,trzy"`
+            resourceGroupName=`cut -d '
+' -f "$resourceGroup" <<< "$VMgroups"`
             echo "$resourceGroupName has been chosen";;
         *)
             echo "$resourceGroup has been created";;
