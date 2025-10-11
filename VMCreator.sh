@@ -13,9 +13,10 @@ else
     echo "Or type a name for a new resource group: "
     read resourceGroup
     case $resourceGroup in
-        [0-$index])
-        resourceGroupName=`cut -d ',' -f 1 <<< $VMgroups`
-        echo "$resourceGroupName has been chosen";;
-        *) echo "$resourceGroup has been created";;
+        [0-99])
+            resourceGroupName=`cut -d ',' -f $index <<< $VMgroups`
+            echo "$resourceGroupName has been chosen";;
+        *)
+            echo "$resourceGroup has been created";;
     esac
 fi
