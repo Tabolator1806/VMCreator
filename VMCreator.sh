@@ -40,7 +40,7 @@ else
     read username
     echo "Input admin password:"
     read -s passwd
-    for i in `seq 2 $machineAmount`
+    for i in `seq 1 $machineAmount`
     do
         az vm create --resource-group $resourceGroup --name "$vmName$i" --image $machineType --admin-username $username --admin-password $passwd --size Standard_D2s_v3 --location francecentral
     done
