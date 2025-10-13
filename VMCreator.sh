@@ -31,7 +31,7 @@ else
     read machineType
     case $machineType in
         1) machineType="Win2022AzureEditionCore";;
-        2) machineType="Ubuntu2404";;
+        2) machineType="Ubuntu2204";;
         3) echo "TBA";;
     esac
     echo "Input vm name: "
@@ -40,8 +40,8 @@ else
     read username
     echo "Input admin password:"
     read -s passwd
-    for i in {1..$amount}
+    for i in `seq 2 $machineAmount`
     do
-        az vm create --resource-group $resourceGroup --name $vmName --image $machineType --public-ip-sku Standard --admin-username $username --admin-password $passwd
+        az vm create --resource-group $resourceGroup --name "$vmName$i" --image $machineType --admin-username $username --admin-password $passwd --size Standard_D2s_v3 --location francecentral
     done
 fi
